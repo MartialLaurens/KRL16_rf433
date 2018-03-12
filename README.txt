@@ -1,8 +1,8 @@
 Createur      : Laurens Martial
 
 Collaborateur : - Emilien Cazor
-		- Corentin Dasilva Leite
+		- Corentin Da silva Leite
 		- Bertrand Bouteloup
 		- Valentin Clairac Chabert
 
-Proffesseur   : Daniel Kihn
+Professeur   : Daniel Kihn
