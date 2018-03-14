@@ -7,7 +7,7 @@
 
 #include <SoftwareSerial.h>
 
-SoftwareSerial SoftSerial(11, 10); // TX, RX
+SoftwareSerial SoftSerial(2, 3); // TX, RX
 int buffer[64];
 int count=0;
 void setup()
@@ -32,7 +32,7 @@ void loop()
             if(count == 64)break;
         }
         for (int i=0; i<count; i++) {
-            Serial.print(buffer[i],HEX);            // if no data transmission ends, write buffer to hardware serial port
+            Serial.print(buffer[i]);            // if no data transmission ends, write buffer to hardware serial port
         }
         clearBufferArray();              // call clearBufferArray function to clear the stored data from the array
         count = 0;                       // set counter of while loop to zero
