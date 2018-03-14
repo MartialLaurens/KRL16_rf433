@@ -1,27 +1,38 @@
-#include <VirtualWire.h> // Vous devez télécharger et installer la librairie VirtualWire.h dans votre dossier "/libraries" !
+/**
+ * Exemple de code pour la bibliothèque VirtualWire – Serveur d'envoi de texte
+ */
 
-void setup()
-{
-    Serial.begin(9600);    // On initialise "le serial monitor", j'ai laissé 9600 bauds ici car c'est la valeur par défaut mais vous pouvez la modifier. Attention à bien mettre la même valeur dans votre Serial Monitor et dans votre programme.
-    vw_setup(300);                 // Bits par seconde (vous pouvez le modifier mais cela modifiera la portée). Voir la documentation de la librairie VirtualWire.
-    vw_set_rx_pin(3);             // C'est sur cette broche que l'on reliera les broches DATA du récepteur, vous pouvez changez de broche si vous le désirez.
-    vw_rx_start();                    // On démarre le récepteur.
+#include <VirtualWire.h>
+
+void setup() {
+  Serial.begin(9600);
+
+  // Initialisation de la bibliothèque VirtualWire
+  // Vous pouvez changez les broches RX/TX/PTT avant vw_setup() si nécessaire
+  vw_setup(2000);
+  vw_rx_start(); // On peut maintenant recevoir des messages
+
+  Serial.println("Go !"); 
 }
 
-void loop()
-{
-    uint8_t buf[VW_MAX_MESSAGE_LEN];
-    uint8_t buflen = VW_MAX_MESSAGE_LEN;
+void loop() {
+  byte message[VW_MAX_MESSAGE_LEN];
+  byte taille_message = VW_MAX_MESSAGE_LEN;
+  // N.B. La constante VW_MAX_MESSAGE_LEN est fournie par la lib VirtualWire
 
-    if (vw_get_message(buf, &buflen)) // On test afin de savoir si un message est reçu.
-    {
-    int i;
-     // Un message est reçu.
+  /* 
+   La variable "taille_message" doit impérativement être remise à 
+   la taille du buffer avant de pouvoir recevoir un message. 
+   Le plus simple est d'utiliser une variable locale pour ne pas
+   avoir à réassigner la valeur à chaque début de loop().
+   */
 
-    for (i = 0; i < buflen; i++)
-    {
-        Serial.write(buf[i]);  // On affiche le message lettre par lettre. Par exemple buf[4] sera égale à la 5ème lettre du mot envoyé (Snootlab donc "t") car on compte le zéro ici.
-        }
-    Serial.println(""); // On saute une ligne afin d'avoir plus de clarté.
-     }
+  // On attend de recevoir un message
+  vw_wait_rx();
+
+  if (vw_get_message(message, &taille_message)) {
+    // On copie le message, qu'il soit corrompu ou non
+
+    Serial.println((char*) message); // Affiche le message
+  }
 }
