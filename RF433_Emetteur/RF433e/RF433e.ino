@@ -10,8 +10,8 @@ unsigned char buffer[64]; // buffer array for data recieve over serial port
 int count=0;     // counter for buffer array 
 void setup()
 {
-  SoftSerial.begin(300);               // the SoftSerial baud rate   
-  Serial.begin(300);             // the Serial port of Arduino baud rate.
+  SoftSerial.begin(9600);               // the SoftSerial baud rate   
+  Serial.begin(9600);             // the Serial port of Arduino baud rate.
 }
  
 void loop()
