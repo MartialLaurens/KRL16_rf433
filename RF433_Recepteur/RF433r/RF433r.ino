@@ -3,8 +3,8 @@
 void setup()
 {
     Serial.begin(9600);    // On initialise "le serial monitor", j'ai laissé 9600 bauds ici car c'est la valeur par défaut mais vous pouvez la modifier. Attention à bien mettre la même valeur dans votre Serial Monitor et dans votre programme.
-    vw_setup(2000);                 // Bits par seconde (vous pouvez le modifier mais cela modifiera la portée). Voir la documentation de la librairie VirtualWire.
-    vw_set_rx_pin(11);             // C'est sur cette broche que l'on reliera les broches DATA du récepteur, vous pouvez changez de broche si vous le désirez.
+    vw_setup(300);                 // Bits par seconde (vous pouvez le modifier mais cela modifiera la portée). Voir la documentation de la librairie VirtualWire.
+    vw_set_rx_pin(3);             // C'est sur cette broche que l'on reliera les broches DATA du récepteur, vous pouvez changez de broche si vous le désirez.
     vw_rx_start();                    // On démarre le récepteur.
 }
 
