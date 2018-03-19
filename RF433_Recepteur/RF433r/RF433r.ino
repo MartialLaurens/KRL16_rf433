@@ -16,7 +16,7 @@ void setup()
  
 void loop()
 {
-  if (SoftSerial.available())              // if date is comming from softwareserial port ==> data is comming from SoftSerial shield
+if (SoftSerial.available())              // if date is comming from softwareserial port ==> data is comming from SoftSerial shield
   {
     while(SoftSerial.available())          // reading data into char array 
     {
@@ -30,7 +30,9 @@ void loop()
   
   if (Serial.available())            // if data is available on hardwareserial port ==> data is comming from PC or notebook
     SoftSerial.write(Serial.read());       // write it to the SoftSerial shield
-    
+   
+   /*SoftSerial.print("toto");
+   delay(2000);*/
 }
 void clearBufferArray()              // function to clear buffer array
 {
